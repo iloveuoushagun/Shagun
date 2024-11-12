@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Heart Belongs to Shagun ❤️</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow-y: auto;
+            position: relative;
+            min-height: 100%;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 1s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+            animation: float 3s ease-in-out infinite;
+            margin: 4rem auto;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            color: #ff6b95;
+            text-shadow: 0 0 10px rgba(255, 107, 149, 0.5);
+            margin-bottom: 1.5rem;
+        }
+
+        .photo-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .photo:hover img {
+            transform: scale(1.1);
+        }
+
+        p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            line-height: 1.8;
+            margin: 1.5rem 0;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-yes {
+            background: linear-gradient(45deg, #ff6b95, #ffc796);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 107, 149, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 149, 0.6);
+        }
+
+        .btn-no {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float-up 4s ease-in-out;
+            color: #ff6b95;
+            text-shadow: 0 0 5px rgba(255, 107, 149, 0.5);
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        #special-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: #ff6b95;
+            text-shadow: 0 0 10px rgba(255, 107, 149, 0.5);
+            opacity: 0;
+            transition: opacity 1s;
+            margin-top: 2rem;
+        }
+
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="hearts"></div>
+    <div class="container animate__animated animate__fadeIn">
+        <h1 class="animate__animated animate__heartBeat">Hey!! Love❤️</h1>
+
+        <div class="photo-gallery">
+            <div class="photo animate__animated animate__fadeInLeft">
+                <img src="./img/WhatsApp Image 2024-10-06 at 9.17.24 PM.jpeg" alt="Us 1">
+            </div>
+            <div class="photo animate__animated animate__fadeInUp">
+                <img src="./img/WhatsApp Image 2024-11-12 at 6.40.52 AM.jpeg" alt="Us 2">
+            </div>
+            <div class="photo animate__animated animate__fadeInRight">
+                <img src="./img/WhatsApp Image 2024-11-12 at 6.41.03 AM.jpeg" alt="Us 3">
+            </div>
+        </div>
+
+        <p class="animate__animated animate__fadeIn animate__delay-1s">
+            In the constellation of my life, you shine the brightest. Your presence has painted my world with colors I never knew existed, and your smile illuminates even my darkest days.
+        </p>
+
+        <p class="animate__animated animate__fadeIn animate__delay-2s">
+            Each and Every conversation with you feels like a dream I never want to wake up from. Now a days, You're my first thought in the morning and my last thought before I sleep.
+            From the moment we met, you've made my world a better place.🌍   </p>
+
+            You're the cutest Girl!!🐼❤️
+
+        <p>I love you more than words can express. 💖🐼</p>
+
+        <p class="question animate__animated animate__fadeIn animate__delay-3s">
+            Would you make me the happiest person alive by being mine forever?
+        </p>
+
+        <div class="buttons animate__animated animate__fadeIn animate__delay-4s">
+            <button class="btn btn-yes" onclick="sayYes()">Yes ❤️</button>
+            <button class="btn btn-no" onmouseover="moveButton(this)" ontouchstart="moveButton(this)">No</button>
+        </div>
+
+        <div id="special-message" class="hidden">
+            You've made my dreams come true! ❤️
+            <br>
+            I promise to love you forever and always!🐼❤️
+        </div>
+    </div>
+
+    <button class="music-btn" onclick="toggleMusic()">🎵</button>
+    <audio id="bgMusic" loop>
+        <source src="./img/haath-thaam-le-piyaa-krte-hain-vaadaa-ab-se-tuu-aarjuu-tuu-hii-hai-iraadaa-love-status-128-ytshorts.savetube.me.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Create stars background
+        function createStars() {
+            const stars = document.querySelector('.stars');
+            const numStars = 200;
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDelay = Math.random() * 1 + 's';
+                stars.appendChild(star);
+            }
+        }
+
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            document.querySelector('.hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        function moveButton(btn) {
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+
+            let newX = Math.random() * (containerRect.width - btn.offsetWidth);
+            let newY = Math.random() * (containerRect.height - btn.offsetHeight);
+
+            newX = Math.max(0, Math.min(newX, containerRect.width - btn.offsetWidth));
+            newY = Math.max(0, Math.min(newY, containerRect.height - btn.offsetHeight));
+
+            btn.style.position = 'absolute';
+            btn.style.left = newX + 'px';
+            btn.style.top = newY + 'px';
+        }
+
+        let audioPlaying = false;
+        function toggleMusic() {
+            const audio = document.getElementById('bgMusic');
+            const musicBtn = document.querySelector('.music-btn');
+
+            if (audioPlaying) {
+                audio.pause();
+                musicBtn.innerHTML = '🎵';
+            } else {
+                audio.play();
+                musicBtn.innerHTML = '⏸️';
+            }
+            audioPlaying = !audioPlaying;
+        }
+
+        function sayYes() {
+            const message = document.getElementById('special-message');
+            const buttons = document.querySelector('.buttons');
+            const question = document.querySelector('.question');
+
+            buttons.style.display = 'none';
+            question.style.display = 'none';
+            message.classList.remove('hidden');
+            message.style.opacity = '1';
+
+            // Create heart shower
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+
+            // Play celebration sound (optional change)
+            const audio = document.getElementById('bgMusic');
+            audio.play();  // Ensure background music keeps playing
+        }
+
+        // Initialize
+        createStars();
+        setInterval(createHeart, 2000);
+    </script>
+</body>
+</html>
